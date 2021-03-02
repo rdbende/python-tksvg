@@ -53,7 +53,7 @@ elif "win" in sys.platform:
 
     for dep in dependencies:
         printf("Installing dependency {}...".format(dep), end=" ")
-        sp.call(["pacman", "--needed", "--noconfirm", "-S", "mingw-w64-x86_64-{}".format(dep)], stdout=sp.PIPE)
+        sp.call(["pacman", "--needed", "--noconfirm", "-S", "mingw-w64-x86_64-{}".format(dep)])  # , stdout=sp.PIPE)
         printf("Done.")
     sp.call(["cmake", ".", "-G", "MinGW Makefiles"])
     sp.call(["mingw32-make"])
@@ -151,12 +151,16 @@ elif "win" in sys.platform:
                     shutil.copyfile(p, t)
                 else:
                     printf("Copying {}".format(p))
-                    shutil.copyfile(p, os.path.join(target, os.path.basename(p)))
+                    target_file = os.path.join(target, os.path.basename(p))
+                    try:
+                        shutil.copyfile(p, target_file)
+                    except shutil.SameFileError:
+                        continue
 
     specials={}  # loaders.cache is used to specify abspaths to the loaders
     specials.update({"libpixbufloader-{}.dll".format(fmt): "/lib/gdk-pixbuf-2.0/2.10.0/loaders/"
                      for fmt in ["ani", "bmp", "gif", "icns", "ico", "jpeg", "png", "pnm", "qtif", "svg", "tga", "tiff", "xbm", "xpm"]})
-    DependencyWalker("libtksvg.dll", specials=specials).copy_to_target("tksvg")
+    DependencyWalker("tksvg/libtksvg.dll", specials=specials).copy_to_target("tksvg")
     kwargs = {"package_data": {"tksvg": ["*.dll", "pkgIndex.tcl", "tksvg.tcl"] + ["{}/{}".format(dir.strip("/"), base) for base, dir in specials.items()]}}
 
 else:

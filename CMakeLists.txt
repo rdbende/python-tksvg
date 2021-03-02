@@ -121,7 +121,7 @@ ENDIF ( TTK_STUB_LIBRARY )
 
 FILE ( WRITE tksvg/pkgIndex.tcl
         "package ifneeded tksvg ${PKG_VERSION} \\
-  [list load [file join $dir lib${PKG_NAME}[info sharedlibextension]] tksvg]" )
+  [list load [file join [pwd] lib${PKG_NAME}[info sharedlibextension]] tksvg]" )
 
 SET ( LIBRARY_OUTPUT_PATH ${PKG_TARGET_LIB_NAME} )
 INSTALL ( TARGETS ${PKG_TARGET_LIB_NAME}
