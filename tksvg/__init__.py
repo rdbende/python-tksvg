@@ -18,6 +18,7 @@ def chdir(target: str):
     finally:
         os.chdir(current)
 
+
 def load(window: tk.Tk):
     """Load tksvg into a Tk interpreter"""
     local = os.path.abspath(os.path.dirname(__file__))
@@ -37,7 +38,6 @@ class SvgImage(tk.PhotoImage):
     This implementation is inspired by GitHub @j4321:
     <https://stackoverflow.com/a/64829808>
     """
-    _tksvg_loaded = False
     _svg_options = [("scale", float), ("scaletowidth", int), ("scaletoheight", int)]
 
     def __init__(self, name=None, cnf={}, master=None, **kwargs):
@@ -46,9 +46,8 @@ class SvgImage(tk.PhotoImage):
         master = master or tk._default_root
         if master is None:
             raise tk.TclError("No Tk instance available to get interpreter from")
-        if not getattr(master, "_tksvg_loaded", False) and not self._tksvg_loaded:
+        if not getattr(master, "_tksvg_loaded", False):
             load(master)
-            self._tksvg_loaded = True
         # Pop SvgImage keyword arguments
         svg_options = {key: t(kwargs.pop(key)) for (key, t) in self._svg_options if key in kwargs}
         # Initialize as a PhotoImage
