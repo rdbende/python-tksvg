@@ -4,6 +4,12 @@ License: GNU GPLv3
 Copyright (c) 2020-2021 RedFantom
 """
 import sys
+from tkinter import TkVersion
+
+
+if TkVersion >= 8.7:
+    message = "Tk 8.7 or higher detected. You do not need tksvg, SVG support is included in your Tkinter version."
+    raise RuntimeError(message)
 
 
 def read(file_name):
@@ -175,8 +181,8 @@ setup(
     packages=["tksvg"],
     description="SVG support for PhotoImage in Tk 8.6",
     author="The tksvg authors",
-    url="https://github.com/RedFantom/tksvg",
-    download_url="https://github.com/RedFantom/python-tksvg/releases",
+    url="https://github.com/TkinterEP/tksvg",
+    download_url="https://github.com/TkinterEP/tksvg/releases",
     license="GNU GPLv3",
     long_description=read("README.md"),
     zip_safe=False,
