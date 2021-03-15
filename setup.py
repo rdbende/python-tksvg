@@ -185,6 +185,7 @@ setup(
     download_url="https://github.com/TkinterEP/tksvg/releases",
     license="GNU GPLv3",
     long_description=read("README.md"),
+    long_description_content_type="text/markdown",
     zip_safe=False,
     **kwargs
 )
