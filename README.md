@@ -1,11 +1,14 @@
 # tksvg for Python's Tkinter
+[![Build status](https://ci.appveyor.com/api/projects/status/9bsgu2urjv3qw0q0/branch/master?svg=true)](https://ci.appveyor.com/project/RedFantom/python-tksvg/branch/master)
+[![Build Status](https://api.travis-ci.com/TkinterEP/python-tksvg.svg?branch=master)](https://travis-ci.org/TkinterEP/python-tksvg)
+
 [tksvg](https://github.com/oehhar/tksvg) is a package for Tcl/Tk that
 adds support for SVG image files. Tkinter makes use of Tcl/Tk under the
 hood, and thus can benefit from this addition. Note that SVG support 
 has been included in Tk 8.7 and thus this package can be made obsolete 
-in the future when Python gets distributed with Tk 8.7. This package is 
-merely a repackaging of the `tksvg` library for Python with a modified
-build system.
+in the future when Python gets distributed with Tk 8.7. This repository 
+is merely a repackaging of the `tksvg` library for Python with a 
+modified build system.
 
 ## Building and installation
 This package makes use of the same build system as [`gttk`](https://github.com/TkinterEP/python-gttk)
