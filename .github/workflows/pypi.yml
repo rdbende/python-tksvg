@@ -22,7 +22,7 @@ jobs:
           python -m pip install scikit-build
       - name: Fetch the wheels from the release
         run: |
-          curl -s https://api.github.com/repos/TkinterEP/python-tkextrafont/releases/latest | grep "browser_download_url.*whl" | cut -d : -f 2,3 | tr -d \" | wget -qi - -P dist/
+          curl -s https://api.github.com/repos/TkinterEP/python-tksvg/releases/latest | grep "browser_download_url.*whl" | cut -d : -f 2,3 | tr -d \" | wget -qi - -P dist/
       - name: Build a source distribution
         run: |
           python setup.py sdist
