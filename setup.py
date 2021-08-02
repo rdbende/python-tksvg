@@ -177,7 +177,7 @@ else:
 
 setup(
     name="tksvg",
-    version="v0.7.3",
+    version="v0.7.4",
     packages=["tksvg"],
     description="SVG support for PhotoImage in Tk 8.6",
     author="The tksvg authors",
