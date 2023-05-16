@@ -5,24 +5,24 @@ build: off
 install:
   - set PATH=C:\msys64\usr\bin;%PATH%
   # Download and unpack zstd for win64 to unpack MSYS packages
-  - appveyor DownloadFile https://github.com/facebook/zstd/releases/download/v1.4.8/zstd-v1.4.8-win64.zip
-  - 7z e zstd-v1.4.8-win64.zip -ozstd -y
+  - appveyor DownloadFile https://github.com/facebook/zstd/releases/download/v1.5.5/zstd-v1.5.5-win64.zip
+  - 7z e zstd-v1.5.5-win64.zip -ozstd -y
   # Load PGP Keys for Msys64
-  - appveyor DownloadFile https://repo.msys2.org/msys/x86_64/msys2-keyring-1~20210213-2-any.pkg.tar.zst
-  - appveyor DownloadFile https://repo.msys2.org/msys/x86_64/msys2-keyring-1~20210213-2-any.pkg.tar.zst.sig
+  - appveyor DownloadFile https://repo.msys2.org/msys/x86_64/msys2-keyring-1~20230316-1-any.pkg.tar.zst
+  - appveyor DownloadFile https://repo.msys2.org/msys/x86_64/msys2-keyring-1~20230316-1-any.pkg.tar.zst.sig
   - dir
-  - zstd\zstd.exe -d msys2-keyring-1~20210213-2-any.pkg.tar.zst
-  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman -U --noconfirm --config <(echo) msys2-keyring-1~20210213-2-any.pkg.tar"
+  - zstd\zstd.exe -d msys2-keyring-1~20230316-1-any.pkg.tar.zst
+  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman -U --noconfirm --config <(echo) msys2-keyring-1~20230316-1-any.pkg.tar"
   # Verify signature AFTER updating the keyring because MSYS messes with keys too much
-  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman-key --verify msys2-keyring-1~20210213-2-any.pkg.tar.zst.sig"
+  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman-key --verify msys2-keyring-1~20230316-1-any.pkg.tar.zst.sig"
   # Kill gpg-agent due to bug in MSYS
   - START /wait taskkill /f /im gpg-agent.exe
   # Download and install zstd for MSYS due to bug in MSYS
-  - appveyor DownloadFile http://repo.msys2.org/mingw/x86_64/mingw-w64-x86_64-zstd-1.4.8-2-any.pkg.tar.zst
-  - zstd\zstd.exe -d mingw-w64-x86_64-zstd-1.4.8-2-any.pkg.tar.zst
+  - appveyor DownloadFile https://repo.msys2.org/mingw/x86_64/mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar.zst
+  - zstd\zstd.exe -d mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar.zst
   - dir
-  - 7z a -tgzip mingw-w64-x86_64-zstd-1.4.8-2-any.pkg.tar.gz mingw-w64-x86_64-zstd-1.4.8-2-any.pkg.tar
-  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman --noconfirm -U mingw-w64-x86_64-zstd-1.4.8-2-any.pkg.tar.gz"
+  - 7z a -tgzip mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar.gz mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar
+  - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman --noconfirm -U mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar.gz"
   # Download and install pacman for MSYS due to bug in MSYS
   - appveyor DownloadFile http://repo.msys2.org/msys/x86_64/pacman-5.2.2-9-x86_64.pkg.tar.zst
   - zstd\zstd.exe -d pacman-5.2.2-9-x86_64.pkg.tar.zst
