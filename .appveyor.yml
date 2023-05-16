@@ -25,7 +25,7 @@ install:
   - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman --noconfirm -U mingw-w64-x86_64-zstd-1.5.5-1-any.pkg.tar.gz"
   # Download and install pacman for MSYS due to bug in MSYS
   - appveyor DownloadFile https://repo.msys2.org/msys/x86_64/pacman-6.0.2-4-x86_64.pkg.tar.zst
-  - zstd\zstd.exe -d pacman-5.2.2-9-x86_64.pkg.tar.zst
+  - zstd\zstd.exe -d pacman-6.0.2-4-x86_64.pkg.tar.zst
   - dir
   - 7z a -tgzip pacman-6.0.2-4-x86_64.pkg.tar.gz pacman-6.0.2-4-x86_64.pkg.tar
   - bash -lc "cd /c/projects/python-tksvg; ls -l; pacman --noconfirm --nodeps --nodeps -U pacman-6.0.2-4-x86_64.pkg.tar.gz"
