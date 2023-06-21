@@ -16,6 +16,9 @@ jobs:
           python -m pip install --upgrade pip
           sudo apt install python3-tk xvfb
           pip install nose
+      - name: Run make
+        run: |
+          make
       - name: Run tests
         run: |
           xvfb-run nosetests
