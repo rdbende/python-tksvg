@@ -18,6 +18,7 @@ jobs:
           pip install nose
       - name: Run make
         run: |
+          cmake .
           make
       - name: Run tests
         run: |
